@@ -1,0 +1,100 @@
+<app-header></app-header>
+<!-- dashboard.component.html --> 
+
+
+   
+  <div class="container-fluid py-3">
+    <div class="row my-3">
+<h3>Widget 1 - Cat fact  <i class="bi bi-arrow-clockwise" (click)="getFact()"></i></h3>
+      <div class="col">
+        <label for="exampleFormControlInput1" class="form-label">{{fact?.fact}}</label>
+       
+      </div>
+    </div>
+</div>
+
+
+<hr/>
+
+
+<div class="container min-height">
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-12">
+      <div class="col">
+        <form (submit)="getTime()">
+            <div class="row my-3">
+                <h3>Widget 2 - Sunrise / Sunset information</h3>
+                <p>Example data input= lat : 36.7201600, Long: -4.4203400, date: any</p>
+              <div class="col">
+                <label for="latitude" class="form-label">Latitude</label>
+                <input type="text" class="form-control form-control-sm" id="latitude" placeholder="Enter Latitude" [(ngModel)]="latitude" required [ngModelOptions]="{standalone: true}">
+              </div>
+            </div>
+        
+            <div class="row my-3">
+        
+              <div class="col">
+                <label for="longitude" class="form-label">longitude</label>
+                <input type="text" class="form-control form-control-sm" id="longitude" placeholder="Enter longitude" [(ngModel)]="longitude" required [ngModelOptions]="{standalone: true}">
+              </div>
+            </div>
+        
+            <div class="row my-3">
+                <label for="myDate">Select Date</label>
+                <div class="input-group">
+                  <input id="dateOfBirth" class="form-control form-control-sm" placeholder="yyyy-mm-dd" ngbDatepicker [placement]="'top'" #dp="ngbDatepicker" [(ngModel)]="myDate" required [ngModelOptions]="{standalone: true}">
+                  <button type="button" class="btn btn-outline-secondary bi bi-calendar" (click)="dp.toggle()"></button>
+                </div>
+              </div>
+            <div class="row my-3">
+              <div class="col">
+                <button class="btn btn-sm btn-outline-primary" type="submit">Submit</button>
+              </div>
+            </div>
+            </form>
+      </div>
+      <div class="col">
+        <h3>Sunrise / Sunset Details</h3>
+
+        <ul class="list-none">
+            <li>
+                <span>Sunrise: {{timeData?.sunrise}}</span><br/>
+                <span>Sunset: {{timeData?.sunset}}</span><br/>
+                <span>Solar noon: {{timeData?.solar_noon}}</span><br/>
+                <span>Day length: {{timeData?.day_length}}</span><br/>
+                <span>civil twilight begin: {{timeData?.civil_twilight_begin}}</span><br/>
+                <span>civil twilight end: {{timeData?.civil_twilight_end}}</span><br/>
+                <span>nautical twilight begin: {{timeData?.nautical_twilight_begin}}</span><br/>
+                <span>nautical twilight end: {{timeData?.nautical_twilight_end}}</span><br/>
+                <span>astronomical twilight begin: {{timeData?.astronomical_twilight_begin}}</span><br/>
+                <span>astronomical twilight end: {{timeData?.astronomical_twilight_end}}</span>
+ 
+            </li>
+        </ul>
+      </div>
+     
+    </div>
+  </div>
+
+
+  
+  <ng-template #demoModal let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Profile update</h4>
+      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+      <form>
+        <div class="form-group">
+          <label for="dateOfBirth">Date of birth</label>
+          <div class="input-group">
+            <input id="dateOfBirth" name="dateOfBirth" class="form-control" placeholder="yyyy-mm-dd" ngbDatepicker #dp="ngbDatepicker">
+            <button type="button" class="btn btn-outline-secondary bi bi-calendar" (click)="dp.toggle()"></button>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button>
+    </div>
+  </ng-template>
+  <app-footer></app-footer>
